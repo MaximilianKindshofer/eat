@@ -3,7 +3,7 @@
    for the Recipie. If you have at least 7 of them they will be
    used to tell you what you could cook and give you a grocery list
    
-   Keywords are add_recepie and get_meals
+   Keywords are add_recipe and get_meals
 """
 import sys
 import getopt
@@ -18,7 +18,7 @@ class Usage(Exception):
         self.msg = msg
 
 def main(argv=None):
-    """Takes the Keywords add_recepie and get_meals and
+    """Takes the Keywords add_recipe and get_meals and
     calles the underlying functions.
     """
     if argv is None:
@@ -34,19 +34,19 @@ def main(argv=None):
         for o, args in opts:
             print(args)
             if o in ("-h", "--help"):
-                print('''Valid options ase -a to add a recepie and -m
+                print('''Valid options ase -a to add a recipe and -m
                       to get meals and -g to get meals and grocerielist
                       ''')
                 return 1
             elif o in ("-a"):
-                save_recepie(add_recepie())
+                save_recipe(add_recipe())
             elif o in ("-m"):
-                recepies = get_recepies()
-                weekly_meals = return_shuffled_max_seven(recepies)
+                recipes = get_recipes()
+                weekly_meals = return_shuffled_max_seven(recipes)
                 print_meals(weekly_meals)
             elif o in ("-g"):
-                recepies = get_recepies()
-                weekly_meals = return_shuffled_max_seven(recepies)
+                recipes = get_recipes()
+                weekly_meals = return_shuffled_max_seven(recipes)
                 print_meals(weekly_meals)
                 print_grocerylist(weekly_meals)
             else:
@@ -58,45 +58,45 @@ def main(argv=None):
         print(sys.stderr, "for help use --help")
         return 2
         
-def add_recepie():
-    """ Asks the user interactivly to input a recepie name
+def add_recipe():
+    """ Asks the user interactivly to input a recipe name
     and the ingredience
     
     Returns
     -------
-        A dictionary with the recepie name and the list of ingedience
+        A dictionary with the recipe name and the list of ingedience
         
         Example
         -------
             {'Applepie':['Apple','Pie']}
     """
-    print("Name of the recepie\n")
+    print("Name of the recipe\n")
     name = input("> ")
-    recepie = []
+    recipe = []
     while True:
-        print("Add an ingredience or finalize the recepie with 'q'")
+        print("Add an ingredience or finalize the recipe with 'q'")
         ingredience = input("> ")
         if ingredience in 'q':
             break
         else:
-            recepie.append(ingredience)
-    return {name: recepie}
+            recipe.append(ingredience)
+    return {name: recipe}
 
-def save_recepie(recepie):
-    """Saves the recepie to a json file"""
+def save_recipe(recipe):
+    """Saves the recipe to a json file"""
     
-    #Get the first key from the dictionary: Name of the recepie
-    name = next(iter(recepie.keys()))
-    with open(name+'.recepie', 'w') as f:
-        json.dump(recepie, f, indent=1)
+    #Get the first key from the dictionary: Name of the recipe
+    name = next(iter(recipe.keys()))
+    with open(name+'.recipe', 'w') as f:
+        json.dump(recipe, f, indent=1)
 
-def get_recepies():
-    """Gets all recepies and returns them as one list"""
-    grand_list_of_recepies = []
-    for recepie in glob.glob("*.recepie"):
-        with open(recepie, 'r') as f:
-            grand_list_of_recepies.append(json.load(f))
-    return grand_list_of_recepies
+def get_recipes():
+    """Gets all recipes and returns them as one list"""
+    grand_list_of_recipes = []
+    for recipe in glob.glob("*.recipe"):
+        with open(recipe, 'r') as f:
+            grand_list_of_recipes.append(json.load(f))
+    return grand_list_of_recipes
 
 def return_shuffled_max_seven(a_list):
     """ Returns 7 items from a list"""
@@ -110,7 +110,7 @@ def print_meals(weekly_meals):
         name = next(iter(meal.keys()))
         week.append(name)
     if len(week) < 7:
-        print("You only have "+str(len(week))+" recepies")
+        print("You only have "+str(len(week))+" recipes")
         for i in range(7-len(week)):
             week.append('')
 
@@ -136,12 +136,12 @@ def print_grocerylist(weekly_meals):
         name = next(iter(meal.keys()))
         meals.append(name)
     
-    recepie_list=[]
+    recipe_list=[]
     for idx, meal  in enumerate(meals):
-        recepie_list.append(weekly_meals[idx][meal])
+        recipe_list.append(weekly_meals[idx][meal])
     
     grocery_list=[]
-    for sublists in recepie_list:
+    for sublists in recipe_list:
         grocery_list += sublists
     
     print("Grocery List:\n")
