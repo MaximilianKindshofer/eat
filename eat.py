@@ -100,8 +100,9 @@ def get_recipes():
 
 def return_shuffled_max_seven(a_list):
     """ Returns 7 items from a list"""
-    random.shuffle(a_list)
-    return a_list[:7]
+    b_list = list(a_list)
+    random.shuffle(b_list)
+    return b_list[:7]
 
 def print_meals(weekly_meals):
     """Prints a weekplan for meals"""
@@ -114,20 +115,18 @@ def print_meals(weekly_meals):
         for i in range(7-len(week)):
             week.append('')
 
-    print('Mondays:')
-    print('    '+str(week[0])+'\n')
-    print('Tuesdays:')
-    print('    '+str(week[1])+'\n')
-    print('Wednesday:')
-    print('    '+str(week[2])+'\n')
-    print('Thursday:')
-    print('    '+str(week[3])+'\n')
-    print('Friday:')
-    print('    '+str(week[4])+'\n')
-    print('Saturday:')
-    print('    '+str(week[5])+'\n')
-    print('Sunday:')
-    print('    '+str(week[6])+'\n')
+    days = ['Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday',
+            ]
+
+    for days,meal in zip(days,week):
+        print('{0}:\n    {1}'.format(days,meal))
+
 
 def print_grocerylist(weekly_meals):
     """Prints the grocersylist"""
