@@ -146,7 +146,8 @@ def print_grocerylist(weekly_meals):
     
     print("Grocery List:\n")
     grocery_list = list(set(grocery_list))
-    print(', '.join(grocery_list))
+    for item in grocery_list:
+        print("    * "+item+"\n")
 
 
 if __name__ == '__main__':
