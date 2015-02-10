@@ -13,6 +13,8 @@ to get meals and -g to get meals and grocerielist
 Adding recipes is done interactivly.
 Have fun.
 
+You can share your .recipe file with other users.
+
 #Copyright
 
 No license fees are requested except for military and related uses, commercial (re)sale, optional commercial licenses are available, and donations are always welcome! You can contact me via maximilian@kindshofer.net
