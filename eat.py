@@ -2,7 +2,7 @@
    You should start adding some Recipies and ingredience you need
    for the Recipie. If you have at least 7 of them they will be
    used to tell you what you could cook and give you a grocery list
-   
+
    Keywords are add_recipe and get_meals
 """
 import sys
@@ -12,10 +12,10 @@ import glob
 import random
 
 
-
 class Usage(Exception):
     def __init__(self, msg):
         self.msg = msg
+
 
 def main(argv=None):
     """Takes the Keywords add_recipe and get_meals and
@@ -26,11 +26,11 @@ def main(argv=None):
     try:
         try:
             opts, args = getopt.getopt(argv[1:], "hamg", ["help", "add"
-                                                         "get"])
+                                                          "get"])
 
         except getopt.error as msg:
             raise Usage(msg)
-        
+
         for o, args in opts:
             print(args)
             if o in ("-h", "--help"):
@@ -51,21 +51,21 @@ def main(argv=None):
                 print_grocerylist(weekly_meals)
             else:
                 raise Usage("No valid option")
-        
-                
+
     except Usage as err:
         print(sys.stderr, err.msg)
         print(sys.stderr, "for help use --help")
         return 2
-        
+
+
 def add_recipe():
     """ Asks the user interactivly to input a recipe name
     and the ingredience
-    
+
     Returns
     -------
         A dictionary with the recipe name and the list of ingedience
-        
+
         Example
         -------
             {'Applepie':['Apple','Pie']}
@@ -82,13 +82,15 @@ def add_recipe():
             recipe.append(ingredience)
     return {name: recipe}
 
+
 def save_recipe(recipe):
     """Saves the recipe to a json file"""
-    
-    #Get the first key from the dictionary: Name of the recipe
+
+    # Get the first key from the dictionary: Name of the recipe
     name = next(iter(recipe.keys()))
     with open(name+'.recipe', 'w') as f:
         json.dump(recipe, f, indent=1)
+
 
 def get_recipes():
     """Gets all recipes and returns them as one list"""
@@ -98,15 +100,17 @@ def get_recipes():
             grand_list_of_recipes.append(json.load(f))
     return grand_list_of_recipes
 
+
 def return_shuffled_max_seven(a_list):
     """ Returns 7 items from a list"""
     b_list = list(a_list)
     random.shuffle(b_list)
     return b_list[:7]
 
+
 def print_meals(weekly_meals):
     """Prints a weekplan for meals"""
-    week=[]
+    week = []
     for meal in weekly_meals:
         name = next(iter(meal.keys()))
         week.append(name)
@@ -124,25 +128,25 @@ def print_meals(weekly_meals):
             'Sunday',
             ]
 
-    for days,meal in zip(days,week):
-        print('{0}:\n    {1}'.format(days,meal))
+    for days, meal in zip(days, week):
+        print('{0}:\n    {1}'.format(days, meal))
 
 
 def print_grocerylist(weekly_meals):
     """Prints the grocersylist"""
-    meals=[]
+    meals = []
     for meal in weekly_meals:
         name = next(iter(meal.keys()))
         meals.append(name)
-    
-    recipe_list=[]
-    for idx, meal  in enumerate(meals):
+
+    recipe_list = []
+    for idx, meal in enumerate(meals):
         recipe_list.append(weekly_meals[idx][meal])
-    
-    grocery_list=[]
+
+    grocery_list = []
     for sublists in recipe_list:
         grocery_list += sublists
-    
+
     print("Grocery List:\n")
     grocery_list = list(set(grocery_list))
     for item in grocery_list:
