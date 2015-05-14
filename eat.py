@@ -76,7 +76,7 @@ def add_recipe():
     while True:
         print("Add an ingredience or finalize the recipe with 'q'")
         ingredience = input("> ")
-        if ingredience in 'q':
+        if ingredience == 'q':
             break
         else:
             recipe.append(ingredience)
