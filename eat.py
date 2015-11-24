@@ -34,7 +34,7 @@ def main(argv=None):
         for o, args in opts:
             print(args)
             if o in ("-h", "--help"):
-                print('''Valid options ase -a to add a recipe and -m
+                print('''Valid options are -a to add a recipe and -m
                       to get meals and -g to get meals and grocerielist
                       ''')
                 return 1
