@@ -19,7 +19,7 @@ You can share your .recipe file with other users.
 
 No license fees are requested except for military and related uses, commercial (re)sale, optional commercial licenses are available, and donations are always welcome! You can contact me via maximilian@kindshofer.net
 
-Woodhouse is distributed under the standard BSD license:
+EAT is distributed under the standard BSD license:
 
 	
 
