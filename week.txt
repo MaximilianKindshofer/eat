@@ -1,0 +1,39 @@
+Monday:
+    Brathähnchen
+Tuesday:
+    Kottlett mit Bratkartoffeln
+Wednesday:
+    Spagetti Carbonara
+Thursday:
+    Sandwich
+Friday:
+    Sandwich (Tunfish)
+Saturday:
+    Chilli con Carne
+Sunday:
+    Bratreis
+
+Grocery List:
+
+    * Mais (Optional)
+    * Hackfleisch
+    * Gemüse
+    * Kochschinken
+    * Soyasoße
+    * Kartoffeln
+    * Eier
+    * Hähnchengewürz
+    * Kidneybohnen
+    * Parmesan
+    * Sandwichtoast
+    * Ganzes Hähnchen
+    * Reis
+    * Tomaten
+    * Mayo
+    * Kottlett
+    * Spagetti
+    * Zwiebeln
+    * Gemüse (Optional)
+    * Tunfish
+    * Paprika
+

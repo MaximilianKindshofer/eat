@@ -127,9 +127,10 @@ def print_meals(weekly_meals):
             'Saturday',
             'Sunday',
             ]
-
-    for days, meal in zip(days, week):
-        print('{0}:\n    {1}'.format(days, meal))
+    recipe_list = []
+    
+    for days, meal in zip(days, weekly_meals):
+        print('{0}:\n    {1}:\n        {2}'.format(days, next(iter(meal.keys())), str(next(iter(meal.values())))[1:-1],))
 
 
 def print_grocerylist(weekly_meals):
@@ -147,10 +148,11 @@ def print_grocerylist(weekly_meals):
     for sublists in recipe_list:
         grocery_list += sublists
 
-    print("Grocery List:\n")
+    print("\nGrocery List:\n")
     grocery_list = list(set(grocery_list))
+    grocery_list.sort()
     for item in grocery_list:
-        print("    * "+item+"\n")
+        print("    * "+item)
 
 
 if __name__ == '__main__':
